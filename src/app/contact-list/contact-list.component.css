@@ -1,0 +1,43 @@
+
+@keyframes fadeout {
+    0%   {opacity: 1;}
+    75%  {opacity: 1;}
+    95%  {opacity: 0;}
+    100% {opacity: 0;}
+}
+
+.contact-info{
+	padding: 1%;
+	border-bottom: 1px solid #fff;
+	transition : border-color 500ms ease-out, background-color 500ms ease-in;
+}
+.contact-info:hover{
+	border-bottom: 1px solid #652dc1;
+	background-color: #E6E6FA;
+}
+.add-newcontact{
+	font-size: 300%;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+.add-newcontact:hover{
+	font-size: 350%;
+}
+.contact-info-details >*:before{
+    display: flex;
+    align-items: center;
+    width: 3%;
+}
+.contact-info-details >*{
+    width: 97%;
+    margin-bottom: 2%;
+}
+.contact-info-details input{
+	margin: 0 1%;
+}
+.animatefadeout{
+	opacity: 0;
+    -webkit-animation: fadeout 5s;
+    animation: fadeout 5s;
+}

@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*main styles*/
+body{
+	font-family: 'Raleway', sans-serif;
+	color: #282828;
+}
+.pointer{ cursor: pointer; }
+.banner{ background-color: #652dc1; color: #fff; padding: 2%; margin: 0;}
+
+input[type="text"], input[type="number"], input[type="email"]{
+	width: 100%;
+	border: 1px solid #282828;
+	border-radius: 0;
+	outline: none !important;
+	box-shadow: none !important;
+	transition: border-color 500ms ease-out;
+}
+input[type="text"]:hover,
+input[type="text"]:focus,
+input[type="number"]:hover, 
+input[type="number"]:focus,
+input[type="email"]:hover, 
+input[type="email"]:focus{
+	border-color: #652dc1 !important;
+}
+
+/*font awesome animations and styles*/
+.fa{
+	font-family: 'Raleway', sans-serif;
+}
+.fa:before{
+	font-family: FontAwesome;
+}
+.fa:before{
+	margin-right: 10px;
+	color: #652dc1;
+}
+.fa.clickable{
+	transition : font-size 0.1s ease-out, color 500ms ease-out;
+}
+.fa.clickable:hover{
+	font-size: 125%;
+}
+
+
+/*overide bootstrap modals styles*/
+.modal-backdrop{
+	background-color: #E6E6FA;
+}
+.modal-header{
+	background-color: #E6E6FA; 
+	border-color: #652dc1;
+}
+.modal-header h4{
+	margin: 0; 
+}

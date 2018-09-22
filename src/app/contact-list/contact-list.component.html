@@ -1,0 +1,89 @@
+<section class="contact-list">
+	<h5 class="banner text-center">CONTACTS LIST ({{contact_list.length}})</h5>
+	<!-- <div class="messages-wrapper"><div [innerHTML]="messages"></div></div> -->
+	<div class="contact-list-container">
+		<div class="contact-info col-sm-12 text-center" 
+		ng-if="contact_list.length > 0"
+		*ngFor="let contact of contact_list" 
+		ng-click="alert(contact['id']);"
+		>
+			<div class="container d-flex">
+				<div class="pointer col-sm-8" (click)="viewContact(contact['id'], '#contact-view-form')">			
+					<div class="fa fa-user contact-name col-sm-4" title="Full Name">{{contact['name']}}</div>
+					<div class="fa fa-phone contact-number col-sm-4" title="Phone Number">{{contact['number']}}</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="pointer fa fa-eye contact-view col-sm-offset-1 col-sm-1 clickable" title="View contact" (click)="viewContact(contact['id'], '#contact-view-form')"></div>
+					<div class="pointer fa fa-pencil contact-edit col-sm-1 clickable" title="Edit contact" (click)="getContact(contact['id'], 'Edit', '#edit-add-contact-form')"></div>
+					<div class="pointer fa fa-trash contact-delete col-sm-1 clickable" title="Delete contact" (click)="deleteContact(contact['id'])"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="add-newcontact fa fa-plus-circle pointer clickable" title="Add a new contact" (click)="addContact('Add', '#edit-add-contact-form')"></div>
+
+<!-- modal view contact list -->
+<div class="modal fade" id="contact-view-form" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" ng-if="contact_view.length > 0">
+      <div class="modal-header">
+        <h4 class="modal-title" class="fa fa-user contact-view-fullname">{{contact_view['name']}}</h4>
+        <div class="action-like-buttons">
+	        <div class="clickable fa fa-pencil pointer" data-dismiss="modal" (click)="getContact(contact_view['id'], 'Edit', '#edit-add-contact-form')"></div>
+	        <div class="clickable fa fa-trash pointer" data-dismiss="modal" (click)="deleteContact(contact_view['id'])"></div>
+	        <div class="clickable fa fa-close pointer" data-dismiss="modal" aria-label="Close"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+        	<h6 class="col-sm-12">Details</h6>
+        	<div class="contact-info-details">
+        		<div class="fa fa-phone contact-view-phone col-sm-12 d-flex">{{contact_view['number']}}</div>
+        		<div class="fa fa-building-o contact-view-company col-sm-12 d-flex">{{contact_view['company']}} - {{contact_view['job']}}</div>
+        		<div class="fa fa-envelope contact-view-email col-sm-12 d-flex">{{contact_view['email']}}</div>
+        	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add edit contact form -->
+<div class="modal fade" id="edit-add-contact-form" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form #addeditForm="ngForm">
+	      <div class="modal-header">
+	        <h4 class="modal-title" class="fa fa-address-book-o title-contact">{{contact_form_title}} Contact</h4>
+	        <div class="action-like-buttons">
+		        <div class="clickable fa fa-save pointer" (click)="saveContact(contact_modal, addeditForm.form.invalid, '#edit-add-contact-form')"></div>
+		        <div class="clickable fa fa-close pointer" data-dismiss="modal" aria-label="Close"></div>
+	        </div>
+	      </div>
+	      <div class="modal-body">
+	        <div class="container">
+	        	<div class="contact-info-details">
+	        		<div [class.d-none]="!addeditForm.form.invalid"  [class.d-flex]="addeditForm.form.invalid" class="fa fa-exclamation contact-error-message col-sm-12">
+	        			Please fill all the fields to proceed.
+	        		</div>
+	        		<div class="fa fa-user contact-view-phone col-sm-12 d-flex">
+						   <input class="form-control form-text user-name-input" type="text" placeholder="Full Name" name="name"  value="{{contact_view['name']}}" [(ngModel)]="contact_modal.name" required />
+	        		</div>
+	        		<div class="fa fa-phone contact-view-phone col-sm-12 d-flex">
+	        			<input class="form-control form-text required phone-input" type="number" placeholder="Phone Number" name="number"  value="{{contact_view['number']}}" [(ngModel)]="contact_modal.number" required />
+	        		</div>
+	        		<div class="fa fa-building-o contact-view-company col-sm-12 d-flex">
+	        			<input class="form-control form-text required company-input" type="text" placeholder="Company Name" name="company"  value="{{contact_view['company']}}"  [(ngModel)]="contact_modal.company" required />
+	        			<input class="form-control form-text required job-input" type="text" placeholder="Job Position" name="job"  value="{{contact_view['job']}}" [(ngModel)]="contact_modal.job" required />
+	        		</div>
+	        		<div class="fa fa-envelope contact-view-email col-sm-12 d-flex">
+	        			<input class="form-control form-text required email-input" type="email" placeholder="Email Address" name="email"  value="{{contact_view['email']}}" [(ngModel)]="contact_modal.email"  required/>
+	        		</div>
+	        	</div>
+	        </div>
+	      </div>
+    	</form>
+    </div>
+  </div>
+</div>
