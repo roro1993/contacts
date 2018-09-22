@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ContactlistService } from '../contactlist.service';
 import { Contact } from '../contact';
 
+declare var $ :any;
+
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
@@ -13,7 +15,7 @@ export class ContactListComponent implements OnInit {
   public contact_view = [];
   public contact_form_title = '';
 	public messages = '';
-  public contact_modal = [];
+  public contact_modal = new Contact();
 
   // constructor() { }
   constructor(private _contactlistService: ContactlistService) { }
@@ -105,7 +107,7 @@ export class ContactListComponent implements OnInit {
   saveContact(data, invalid, modal_id){
     if(invalid == true) return;
     // form has been filled..
-    if(data.id == ""){
+    if(data.id == 0){
       // adding contact
       this._contactlistService.createContact(data)
       .subscribe(data => {

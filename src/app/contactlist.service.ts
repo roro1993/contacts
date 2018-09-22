@@ -31,7 +31,7 @@ export class ContactlistService {
 
 
   deleteContact(cid){
-   	return this.http.post(this._url + 'delete/' + cid);
+   	return this.http.post(this._url + 'delete/' + cid, cid);
   }
 
 }
